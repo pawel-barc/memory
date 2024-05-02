@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import CardsComp from './components/CardsComp'
+import ButtonComponent from './components/button'
+import TitleComponent from './components/Title';
 
 const imagesCartes = [
 
@@ -62,8 +64,8 @@ setTurns(0)
   return (
     
     <div className="App">
-      <h1> Memory Game </h1>
-    <button onClick={shuffleCards}> New game </button>
+      <TitleComponent/> {}
+    <ButtonComponent onClick={shuffleCards} />
 
     <div className='card-grid'>
       {cards.map(card =>(
