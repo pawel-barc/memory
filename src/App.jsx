@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
 import './App.css'
+import CardsComp from './components/CardsComp'
 
 const imagesCartes = [
 
@@ -37,12 +38,7 @@ setTurns(0)
     <button onClick={shuffleCards}> New game </button>
     <div className='card-grid'>
       {cards.map(card =>(
-        <div className='card'  key={card.id}>
-          <div>
-            <img className='frontside' src = {card.src} alt='cardfront'/>
-            <img className='backside' src='/img/img.jpg' alt='backside'/>
-          </div>
-        </div>  
+        <CardsComp key ={card.id} card = {card}/>
       ))}
     </div>
     </div>
