@@ -1,0 +1,29 @@
+.card img{
+border-radius: 10px;
+border: 8px solid rgb(146, 46, 46);
+border-style: groove;
+width: 100%;
+display: block;
+}
+.card{
+    position: relative;
+}
+.card .frontside{
+    transform: rotateY(90deg);
+    transition: all ease-in 0.3s;
+    position: absolute;
+}
+.flipped .frontside{
+transform: rotateY(0deg);
+transition-delay: 0.2s;
+}
+
+.card .backside{
+transition: all ease-in 0.3s;
+transition-delay: 0.2s;
+}
+
+.flipped .backside{
+    transform: rotateY(90deg);   
+    transition-delay: 0s;
+}

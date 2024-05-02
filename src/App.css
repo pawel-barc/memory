@@ -3,6 +3,11 @@
   margin: 40px auto;
 
 }
+h1{
+  background-color: #26252c;
+  color: yellow;
+  border-radius: 10px;
+}
 
 button{
   background: none;
@@ -19,16 +24,16 @@ button:hover{
   color: #fff;
 }
 .backside{
-  width: 205px;
-  height: 153px;
+  width: 150px;
+  height: 103px;
 }
 .frontside{
-  width: 205px;
-  height: 153px;
+  width: 150px;
+  height: 103px;
 }
 .card-grid{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 50px;
+  grid-gap: 30px;
   margin-top: 50px;
 }

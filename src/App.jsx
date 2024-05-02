@@ -1,19 +1,19 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import CardsComp from './components/CardsComp'
 
 const imagesCartes = [
 
 
-{"src" : "/img/img1.jpg"},
-{"src" : "/img/img2.jpg"},
-{"src" : "/img/img3.jpg"},
-{"src" : "/img/img4.jpg"},
-{"src" : "/img/img5.jpg"},
-{"src" : "/img/img6.jpg"},
-{"src" : "/img/img7.jpg"},
-{"src" : "/img/img8.jpg"}
+{"src" : "/img/img1.jpg", matched: false },
+{"src" : "/img/img2.jpg", matched: false },
+{"src" : "/img/img3.jpg", matched: false },
+{"src" : "/img/img4.jpg", matched: false },
+{"src" : "/img/img5.jpg", matched: false },
+{"src" : "/img/img6.jpg", matched: false },
+{"src" : "/img/img7.jpg", matched: false },
+{"src" : "/img/img8.jpg", matched: false }
 
 ]
 
@@ -21,6 +21,8 @@ const imagesCartes = [
 function App() {
   const [cards, setCards] = useState([])
   const [turns, setTurns] = useState(0)
+  const [firstChoice, setfirstChoice] = useState(null)
+  const [secondChoice, setsecondChoice] = useState(null)
   // Doublage et mélange des cartes
   const shuffleCards = () => {
     const shuffleCards = [ ...imagesCartes, ...imagesCartes]
@@ -30,15 +32,45 @@ setCards(shuffleCards)
 setTurns(0)    
 
   }
-  console.log(cards, turns);
+  const handleChoice = (card) =>{
+    firstChoice ? setsecondChoice (card) : setfirstChoice(card) 
+  }
+  useEffect(()=> {
+    if (firstChoice && secondChoice ){
+      if ( firstChoice.src === secondChoice.src){
+        setCards(prevCards =>{
+          return prevCards.map(card =>{
+            if (card.src === firstChoice.src){
+              return { ...card, matched: true}
+            }else {
+              return card
+            }
+          })
+        })
+        resetTurn()
+      }else
+      setTimeout (() => resetTurn(),1000)
+    }
+
+  }, [firstChoice, secondChoice])
+  console.log (cards)
+  const resetTurn = () =>{
+    setfirstChoice(null)
+    setsecondChoice(null)
+    setTurns(prevTurns => prevTurns + 1)
+  }
   return (
     
     <div className="App">
       <h1> Memory Game </h1>
     <button onClick={shuffleCards}> New game </button>
+
     <div className='card-grid'>
       {cards.map(card =>(
-        <CardsComp key ={card.id} card = {card}/>
+        <CardsComp key ={card.id} card = {card}
+        handleChoice = {handleChoice}
+        flipped = { card === firstChoice || card === secondChoice || card.matched}
+        />
       ))}
     </div>
     </div>
