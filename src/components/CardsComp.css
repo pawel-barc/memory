@@ -7,9 +7,10 @@ display: block;
 }
 .card{
     position: relative;
+    margin-right: 10px;
 }
 .card .frontside{
-    transform: rotateY(90deg);
+    transform: rotateX(90deg);
     transition: all ease-in 0.3s;
     position: absolute;
 }

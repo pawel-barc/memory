@@ -1,5 +1,5 @@
 .App{
-  max-width: 860px;
+  max-width: 960px;
   margin: 40px auto;
 
 }
@@ -7,6 +7,9 @@ h1{
   background-color: #26252c;
   color: yellow;
   border-radius: 10px;
+  width: 50%;
+  margin-left: 27%;
+
 }
 
 button{
@@ -14,8 +17,9 @@ button{
   border: 2px solid #fff;
   padding: 6px 12px;
   border-radius: 8px;
-  color: #fff;
+  color: yellow;
   font-weight: bold;
+  font-family: "Jacquard 24", system-ui;
   cursor: pointer;
   font-size: 1em;
 }
@@ -23,17 +27,40 @@ button:hover{
   background: brown;
   color: #fff;
 }
-.backside{
-  width: 150px;
-  height: 103px;
+.backside, .frontside{
+  width: 110px;
+  height: 90px;
 }
-.frontside{
-  width: 150px;
-  height: 103px;
-}
+
 .card-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 30px;
-  margin-top: 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-rows: auto;
+  margin-top: 30px;
+
+}
+
+.congratulations {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(https://64.media.tumblr.com/01bdf5e7178de861144211ac8762cad1/tumblr_piu3y9E0EO1uh3x51o3_540.gif);
+  width: 39%;
+  height: 46%;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation: slideIn 1.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate(100%, -50%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
 }
