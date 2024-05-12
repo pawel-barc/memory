@@ -7,7 +7,6 @@ import TitleComponent from './components/Title'
 
 // Le tableau de liens des images, valeur initiale
 const imagesCartes = [
-
 {"src" : "/img/img1.jpg", matched: false },
 {"src" : "/img/img2.jpg", matched: false },
 {"src" : "/img/img3.jpg", matched: false },
@@ -24,18 +23,20 @@ const imagesCartes = [
 function App() {
   const [cards, setCards] = useState([])
   const [turns, setTurns] = useState(0)
-  const [firstChoice, setfirstChoice] = useState(null)
-  const [secondChoice, setsecondChoice] = useState(null)
+  const [firstChoice, setfirstChoice] = useState(null);
+  const [secondChoice, setsecondChoice] = useState(null);
   const [allMatched, setAllMatched] = useState(false);
+  const [cardsShuffled, setCardsShuffled] = useState(false);
 
   // Doublage et mélange des cartes
   const shuffleCards = () => {
     const shuffleCards = [ ...imagesCartes, ...imagesCartes]
     .sort(()  => Math.random() -0.5)
     .map ((card) => ({...card, id: Math.random() }))
-  setCards(shuffleCards)
-  setTurns(0)
+  setCards(shuffleCards);
+  setTurns(0);
   setAllMatched(false);
+  setCardsShuffled(true);
   }
   // Indique la carte choisie par jouer, soit la première soit la deuxiéme
   const handleChoice = (card) =>{
@@ -44,12 +45,12 @@ function App() {
   // Ici useEffect est appelé chaque fois quand la valeur des cartes change
   //quand tout les cartes sont appariées il définie allMatched sur true
   useEffect(() => {
-    if (cards.every(card => card.matched)) {
+    if (cardsShuffled && cards.every((card) => card.matched)) {
       setAllMatched(true);
     } else {
       setAllMatched(false);
     }
-  }, [cards]);
+  }, [cards, cardsShuffled]);
 
   // Ici useEffect est appelé chaque fois quand la valeur de firstChoice ou secondChoice a changé
   // il compare aussi si les deux valeurs choisie par le jouer sont pareils, si oui il définie 'matched' sur true
